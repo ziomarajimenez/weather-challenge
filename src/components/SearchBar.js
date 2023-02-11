@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-import { debounce } from '../../utils/utils';
+import { debounce } from '../utils/utils';
+import './styles.css'
+
 export const SearchBar = ({ handleSelectCity, selectedCity }) => {
     const [foundCityName, setFoundCityName] = useState([]);
     const [inputValue, setInputValue] = useState('');
 
-    const apiURL = 'https://search.reservamos.mx/api/v2/places?q=';
-
     const searchCity = (cityName) => {
-        fetch(`${apiURL}${cityName}`)
+        fetch(`https://search.reservamos.mx/api/v2/places?q=${cityName}`)
             .then((response) => {
                 return response.json()
             })
@@ -36,19 +36,28 @@ export const SearchBar = ({ handleSelectCity, selectedCity }) => {
     }
 
     return(
-        <div> 
-            <input 
-                type="text"
-                onChange={handleChange}
-                placeholder= 'Busque su destino'
-                value={inputValue}
-            />
-            {foundCityName && foundCityName.map((city) => {
-                return (
-                    <p data-id={city.id} key={city.id} onClick={handleOnClick}>{city?.city_name}, {city?.state}</p>
-                )
-            })}
-            {!selectedCity?.id && foundCityName?.length === 0 && inputValue ? <div> No hay resultados </div> : null }
+        <div className='Searchbar-container'>
+            <div className='input-container'> 
+                <input 
+                    type="text"
+                    onChange={handleChange}
+                    placeholder= 'Busque su destino'
+                    value={inputValue}
+                />
+                {foundCityName 
+                ?
+                    <ul className='search-results'>
+                        {foundCityName.map((city) => {
+                            return (
+                                <li data-id={city.id} key={city.id} onClick={handleOnClick} >{city?.city_name}, {city?.state}</li>
+                            )
+                        })}
+                        {!selectedCity?.id && foundCityName?.length === 0 && inputValue ? <li> No hay resultados </li> : null }
+                    </ul> 
+                :
+                    null
+                }
+            </div>
         </div>
     )
 }

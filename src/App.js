@@ -1,13 +1,11 @@
 import React from 'react';
 import './App.css';
-import { AppContainer } from './components/AppContainer/AppContainer';
+import { AppContainer } from './components/AppContainer';
 
 function App() {
   
   return (
     <div className="App">
-      {/* <section className="App-content">
-      </section> */}
       <AppContainer/>
     </div>
   );

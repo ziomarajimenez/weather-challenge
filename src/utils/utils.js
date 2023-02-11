@@ -18,16 +18,7 @@ export const convertToDayOfWeek = (timestamp) => {
     return daysOfWeek[date.getUTCDay()];
 }
 
-   // const debounce = (fn, delay) => {
-    //     let timerId;
-    //     return function() {
-    //         clearTimeout(timerId);
-    //         timerId = setTimeout(() => {
-    //             fn.apply(this, arguments);
-    //         }, delay);
-    //     };
-    // }
-
+// Receives a function and a delay in milliseconds.
 export const  debounce = (fn, delay) => {
     let timer = null;
     return function(...args) {
