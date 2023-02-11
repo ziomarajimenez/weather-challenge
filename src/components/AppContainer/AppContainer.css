@@ -1,0 +1,9 @@
+.App-container{
+  /* min-height: 100vh; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(1px + 2vmin);
+    margin: 1px solid #E2E2E2;
+}
